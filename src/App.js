@@ -31,13 +31,9 @@ function App()
   let [prevNumber, setPrevNumber] = useState("")
   let [operator, setOperator] = useState("")
 
-  const buttonEvent = (event) =>
+  function isEqual()
   {
-    const buttonValue = event.target.name
-
-    if (buttonValue === "=")
-    {
-      if (currentButtonValue !== "" && prevNumber !== "" && operator !== "")
+    if (currentButtonValue !== "" && prevNumber !== "" && operator !== "")
       {
         const num1 = parseInt(prevNumber)
         const num2 = parseInt(currentButtonValue)
@@ -47,26 +43,50 @@ function App()
         setPrevNumber("")
         setOperator("")
       }
-    }
-    else if (buttonValue === "+" || buttonValue === "-" || buttonValue === "*" || buttonValue === "/")
-    {
-      if (currentButtonValue !== "")
+  }
+
+  function isOperator(value)
+  {
+    if (currentButtonValue !== "")
       {
-        setOperator(buttonValue)
+        setOperator(value)
         setPrevNumber(currentButtonValue)
         setCurrentButtonValue("")
       }
       else return
+  }
+
+  function isClear()
+  {
+    setCurrentButtonValue("")
+    setPrevNumber("")
+    setOperator("")
+  }
+
+  function isNum(value)
+  {
+    setCurrentButtonValue(currentButtonValue + value)
+  }
+
+  const buttonEvent = (event) =>
+  {
+    const buttonValue = event.target.name
+
+    if (buttonValue === "=")
+    {
+      isEqual()
+    }
+    else if (buttonValue === "+" || buttonValue === "-" || buttonValue === "*" || buttonValue === "/")
+    {
+      isOperator(buttonValue)
     }
     else if (buttonValue === "C")
     {
-      setCurrentButtonValue("")
-      setPrevNumber("")
-      setOperator("")
+      isClear()
     }
     else // 숫자
     {
-      setCurrentButtonValue(currentButtonValue + buttonValue)
+      isNum(buttonValue)
     } 
   }
 
