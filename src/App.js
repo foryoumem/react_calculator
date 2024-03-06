@@ -35,9 +35,9 @@ function getCalculatedResult(num1, num2, operator)
 
 function App()
 {
-  let [currentScreenValue, setCurrentScreenValue] = useState("")
-  let [prevNumber, setPrevNumber] = useState("")
-  let [operator, setOperator] = useState("")
+  const [currentScreenValue, setCurrentScreenValue] = useState("")
+  const [prevNumber, setPrevNumber] = useState("")
+  const [operator, setOperator] = useState("")
 
   // 계산기에서 연산자(+, -, *, /) 버튼을 눌렀을 때
   const operatorButtonEvent = (event) =>
